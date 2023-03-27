@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 17:40:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/02/26 20:00:05 by aarbaoui         ###   ########.fr       */
+/*   Created: 2023/03/26 11:28:38 by aarbaoui          #+#    #+#             */
+/*   Updated: 2023/03/27 13:13:35 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,52 @@
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/time.h>
-# include <time.h>
 # include <unistd.h>
 
-# define LEFT 255
-# define RIGHT 256
+struct s_data;
+struct s_philo;
 
 typedef struct s_philo
 {
 	int				id;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				num_of_philo;
-	int				meals;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	int				num_meals;
+	int				nb_meals;
 	long long		last_meal;
-	long long		start_time;
-	int				is_eating;
+	int				dead;
+	struct s_data	*data;
+	pthread_t		thread;
 }					t_philo;
 
 typedef struct s_data
 {
-	t_philo			*philo;
-	int				num_of_philo;
+	int				nb_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				total_meals;
-	pthread_mutex_t	*forks;
+	int				nb_must;
 	long long		start_time;
+	int				*is_philo_dead;
+	int				total_eat;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	*print;
+	pthread_mutex_t	*dead;
+	pthread_mutex_t	*all_eat;
+	t_philo			*philos;
 }					t_data;
-// utils
-void				*ft_calloc(size_t count, size_t size);
-int					ft_atoi(const char *str);
-long long			ft_get_time(void);
-//actions
-void				*life(void *arg);
+
+// init.c
+int					init_data(t_data *data, int argc, char **argv);
+int					init_philos(t_data *data);
+int					init_mutexes(t_data *data);
+// main.c
+int					create_threads(t_data *data);
+int					monitor(t_data *data);
+// routine.c
+void				*philo_routine(void *philo);
+// utils/rout_utils.c
+void				put_forks(t_philo *philo);
+void				take_forks(t_philo *philo);
+// utils/custom.c
+long long			get_time(void);
+void				my_print(t_philo *philo, t_data *data, char *str);
 #endif
