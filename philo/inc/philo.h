@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:28:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 13:13:35 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:38:14 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-struct s_data;
-struct s_philo;
+struct	s_data;
+struct	s_philo;
 
 typedef struct s_philo
 {
@@ -64,4 +64,7 @@ void				take_forks(t_philo *philo);
 // utils/custom.c
 long long			get_time(void);
 void				my_print(t_philo *philo, t_data *data, char *str);
+//utils
+void				*ft_calloc(size_t count, size_t size);
+int					ft_atoi(const char *str);
 #endif

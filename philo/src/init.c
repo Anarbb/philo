@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:03:29 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 14:21:27 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:37:00 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int	init_data(t_data *data, int argc, char **argv)
 {
-	data->nb_philos = atoi(argv[1]);
-	data->time_to_die = atoi(argv[2]);
-	data->time_to_eat = atoi(argv[3]);
-	data->time_to_sleep = atoi(argv[4]);
+	data->nb_philos = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		data->nb_must = atoi(argv[5]);
+		data->nb_must = ft_atoi(argv[5]);
 	else
 		data->nb_must = -1;
 	if (data->nb_philos < 0 || data->nb_philos > 200 || data->time_to_die < 60
-		|| data->time_to_eat < 60 || data->time_to_sleep < 60 || data->nb_must <
-		-1)
+		|| data->time_to_eat < 60 || data->time_to_sleep < 60 || data->nb_must
+		< -1)
 		return (1);
 	data->start_time = get_time();
-	data->is_philo_dead = calloc(1, sizeof(int));
+	data->is_philo_dead = ft_calloc(1, sizeof(int));
 	if (!data->is_philo_dead)
 		return (1);
 	return (0);
@@ -59,7 +59,7 @@ int	init_mutexes(t_data *data)
 	i = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	data->print = malloc(sizeof(pthread_mutex_t));
-	if (!data->forks)
+	if (!data->print || !data->forks)
 		return (1);
 	while (i < data->nb_philos)
 	{

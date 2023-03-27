@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:04:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 13:07:29 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:37:34 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	thinking(t_philo *philo)
 
 void	*philo_routine(void *philo)
 {
-	t_philo *philos;
+	t_philo	*philos;
 
 	philos = (t_philo *)philo;
 	if (philos->id % 2 == 0)

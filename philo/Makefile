@@ -1,5 +1,5 @@
 NAME        := philo
-CC        := gcc
+CC        := cc
 FLAGS    := -Wall -Wextra -Werror -I inc
 
 SRCS        :=      main.c \
@@ -7,6 +7,8 @@ SRCS        :=      main.c \
 					src/routine.c \
 					src/utils/custom.c \
 					src/utils/rout_utils.o \
+					src/utils/ft_atoi.c \
+					src/utils/ft_calloc.c \
                           
 OBJS        := $(SRCS:.c=.o)
 

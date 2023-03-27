@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 14:22:23 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:36:27 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ int	create_threads(t_data *data)
 	i = 0;
 	while (i < data->nb_philos)
 	{
-		pthread_create(&data->philos[i].thread, NULL, &philo_routine,
-				&data->philos[i]);
+		if (pthread_create(&data->philos[i].thread, NULL, &philo_routine,
+				&data->philos[i]) != 0)
+			return (1);
 		i++;
 	}
 	i = 0;
 	while (i < data->nb_philos)
 	{
-		pthread_detach(data->philos[i].thread);
+		if (pthread_detach(data->philos[i].thread) != 0)
+			return (1);
 		i++;
 	}
 	return (0);
@@ -51,7 +53,7 @@ int	monitor(t_data *data)
 		{
 			pthread_mutex_lock(data->print);
 			printf("%lld %d died\n", get_time() - data->start_time,
-					data->philos[i].id);
+				data->philos[i].id);
 			return (1);
 		}
 		i++;
@@ -59,11 +61,8 @@ int	monitor(t_data *data)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	init(t_data *data, int argc, char **argv)
 {
-	t_data	*data;
-
-	data = calloc(1, sizeof(t_data));
 	if (argc != 5 && argc != 6)
 	{
 		printf("Error: Wrong number of arguments");
@@ -84,6 +83,18 @@ int	main(int argc, char **argv)
 		printf("Error: Malloc failed");
 		return (1);
 	}
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_data	*data;
+
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		return (1);
+	if (init(data, argc, argv) == 1)
+		return (1);
 	create_threads(data);
 	while (1)
 	{
