@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 13:16:22 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:22:23 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,19 @@ int	create_threads(t_data *data)
 int	monitor(t_data *data)
 {
 	int	i;
+	int	max;
 
+	max = 0;
 	i = 0;
 	while (i < data->nb_philos)
 	{
-		if (get_time() - data->philos[i].last_meal > data->time_to_die)
+		if (data->nb_must != -1)
+		{
+			max += data->philos->nb_meals;
+			if (max > data->nb_philos * data->nb_must)
+				return (1);
+		}
+		else if (get_time() - data->philos[i].last_meal > data->time_to_die)
 		{
 			pthread_mutex_lock(data->print);
 			printf("%lld %d died\n", get_time() - data->start_time,
@@ -53,7 +61,7 @@ int	monitor(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = calloc(1, sizeof(t_data));
 	if (argc != 5 && argc != 6)
@@ -81,8 +89,6 @@ int	main(int argc, char **argv)
 	{
 		if (monitor(data) == 1)
 			return (0);
-		usleep(1000);
 	}
-
 	return (0);
 }

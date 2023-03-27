@@ -1,9 +1,6 @@
 NAME        := philo
 CC        := gcc
 FLAGS    := -Wall -Wextra -Werror -I inc
-################################################################################
-#                                 PROGRAM'S SRCS                               #
-################################################################################
 
 SRCS        :=      main.c \
 					src/init.c \
@@ -16,10 +13,6 @@ OBJS        := $(SRCS:.c=.o)
 %.o: %.c
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-################################################################################
-#                                  Makefile  objs                              #
-################################################################################
-
 
 CLR_RMV		:= \033[0m
 RED		    := \033[1;31m
@@ -29,12 +22,11 @@ BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 RM		    := rm -f
 
+all:		${NAME}
+
 ${NAME}:	${OBJS}
 			@ ${CC} ${FLAGS} ${OBJS} -o ${NAME}
 			@ echo "$(GREEN)$(NAME) $(CYAN)compiled ✔️"
-
-all:		${NAME}
-
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o
@@ -45,3 +37,5 @@ fclean:		clean
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
+
+.PHONY:		all clean fclean re
