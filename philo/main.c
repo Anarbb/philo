@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 14:36:27 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:18:09 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,18 @@ int	monitor(t_data *data)
 	i = 0;
 	while (i < data->nb_philos)
 	{
-		if (data->nb_must != -1)
-		{
-			max += data->philos->nb_meals;
-			if (max > data->nb_philos * data->nb_must)
-				return (1);
-		}
-		else if (get_time() - data->philos[i].last_meal > data->time_to_die)
+		if (get_time() - data->philos[i].last_meal > data->time_to_die)
 		{
 			pthread_mutex_lock(data->print);
 			printf("%lld %d died\n", get_time() - data->start_time,
 				data->philos[i].id);
 			return (1);
+		}
+		else if (data->nb_must != -1)
+		{
+			max += data->philos->nb_meals;
+			if (max > data->nb_philos * data->nb_must)
+				return (1);
 		}
 		i++;
 	}
