@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/29 13:18:09 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:02:01 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,22 @@ int	init(t_data *data, int argc, char **argv)
 {
 	if (argc != 5 && argc != 6)
 	{
-		printf("Error: Wrong number of arguments");
+		printf("Error: Wrong number of arguments\n");
 		return (1);
 	}
 	if (init_data(data, argc, argv) == 1)
 	{
-		printf("Error: Wrong arguments");
+		printf("Error: Wrong arguments\n");
 		return (1);
 	}
 	if (init_philos(data) == 1)
 	{
-		printf("Error: Malloc failed");
+		printf("Error: Malloc failed\n");
 		return (1);
 	}
 	if (init_mutexes(data) == 1)
 	{
-		printf("Error: Malloc failed");
+		printf("Error: Malloc failed\n");
 		return (1);
 	}
 	return (0);

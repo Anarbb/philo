@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:04:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 14:37:34 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:01:05 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*philo_routine(void *philo)
 
 	philos = (t_philo *)philo;
 	if (philos->id % 2 == 0)
-		usleep(10);
+		usleep(100);
 	while (1)
 	{
 		take_forks(philos);
