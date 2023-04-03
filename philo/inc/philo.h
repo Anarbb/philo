@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:28:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/03/27 14:38:14 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:33:44 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				nb_must;
 	long long		start_time;
-	int				*is_philo_dead;
 	int				total_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*dead;
 	pthread_mutex_t	*all_eat;
+	pthread_mutex_t	*eat;
 	t_philo			*philos;
 }					t_data;
 
@@ -61,6 +61,7 @@ void				*philo_routine(void *philo);
 // utils/rout_utils.c
 void				put_forks(t_philo *philo);
 void				take_forks(t_philo *philo);
+void				fusleep(unsigned int usec);
 // utils/custom.c
 long long			get_time(void);
 void				my_print(t_philo *philo, t_data *data, char *str);
