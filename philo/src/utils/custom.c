@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:05:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/06 18:27:17 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:19:53 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,14 @@ void	destory_mutex(t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(data->print);
+	pthread_mutex_destroy(data->eat);
 }
 
 void	fusleep(long long usec)
 {
-	long long st=get_time();
+	long long	st;
+
+	st = get_time();
 	while (get_time() - st < usec)
 		usleep(100);
 }
