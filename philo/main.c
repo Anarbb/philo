@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/03 16:44:05 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:20:23 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ int	main(int argc, char **argv)
 		if (monitor(data) == 1)
 			return (0);
 	}
+	destory_mutex(data);
 	return (0);
 }

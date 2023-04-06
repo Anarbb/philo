@@ -12,7 +12,7 @@ SRCS        :=      main.c \
                           
 OBJS        := $(SRCS:.c=.o)
 
-%.o: %.c
+%.o: %.c inc/philo.h
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 
