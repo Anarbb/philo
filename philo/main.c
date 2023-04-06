@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/06 18:20:23 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:47:14 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 	while (1)
 	{
 		if (monitor(data) == 1)
-			return (0);
+			break ;
 	}
 	destory_mutex(data);
 	return (0);
