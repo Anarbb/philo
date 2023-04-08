@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:03:29 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/08 15:20:46 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/08 15:55:43 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	init_data(t_data *data, int argc, char **argv)
 {
 	data->nb_philos = ft_atoi(argv[1]);
-	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_die = ft_atoi(argv[2]) + 10;
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
@@ -57,14 +57,17 @@ int	init_mutexes(t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	data->print = malloc(sizeof(pthread_mutex_t));
 	data->eat = malloc(sizeof(pthread_mutex_t));
-	if (!data->print || !data->forks)
+	if (!data->print || !data->forks || !data->eat)
 		return (1);
 	while (i < data->nb_philos)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			return (1);
 		i++;
 	}
-	pthread_mutex_init(data->print, NULL);
-	pthread_mutex_init(data->eat, NULL);
+	if (pthread_mutex_init(data->print, NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(data->eat, NULL) != 0)
+		return (1);
 	return (0);
 }
