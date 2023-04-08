@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/07 21:10:52 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/08 15:43:50 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ int	monitor(t_data *data)
 
 int	init(t_data *data, int argc, char **argv)
 {
-	if (check_args(argv, argc))
+	if (check_args(argv))
 	{
 		printf("Error: Wrong arguments\n");
+		return (1);
 	}
 	if (init_data(data, argc, argv) == 1)
 	{
@@ -91,6 +92,11 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
+	if (argc != 5 && argc != 6)
+	{
+		printf("Error: Wrong number of arguments\n");
+		return (1);
+	}
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (1);

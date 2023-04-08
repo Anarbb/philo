@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:06:39 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/07 21:10:51 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/08 15:49:50 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,23 @@ void	take_forks(t_philo *philo)
 	my_print(philo, philo->data, "has taken a fork");
 }
 
-int	check_args(char **av, int ac)
+int	check_args(char **av)
 {
 	int	i;
-	int j;
+	int	j;
 
-	i = 0;
+	i = 1;
 	j = 0;
-	if (ac != 5 && ac != 6)
-	{
-		printf("Error: Wrong number of arguments\n");
-		return (1);
-	}
 	while (av[i])
 	{
 		j = 0;
 		while (av[i][j])
 		{
-			if (av[i][j] >= '0' || av[i][j] <= '9')
-				return (0);
+			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }

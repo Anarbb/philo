@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:28:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/07 21:07:43 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/08 15:41:12 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void				*philo_routine(void *philo);
 void				put_forks(t_philo *philo);
 void				take_forks(t_philo *philo);
 void				fusleep(long long usec);
-int					check_args(char **av, int ac);
+int					check_args(char **av);
 // utils/custom.c
 long long			get_time(void);
 void				my_print(t_philo *philo, t_data *data, char *str);
