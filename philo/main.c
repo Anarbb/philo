@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:37:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/08 15:43:50 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:24:02 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,15 @@ int	init(t_data *data, int argc, char **argv)
 	return (0);
 }
 
+void	free_all(t_data *data)
+{
+	free(data->philos);
+	free(data->forks);
+	free(data->print);
+	free(data->eat);
+	free(data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -101,7 +110,10 @@ int	main(int argc, char **argv)
 	if (!data)
 		return (1);
 	if (init(data, argc, argv) == 1)
+	{
+		free_all(data);
 		return (1);
+	}
 	create_threads(data);
 	while (1)
 	{
@@ -109,5 +121,6 @@ int	main(int argc, char **argv)
 			break ;
 	}
 	destory_mutex(data);
+	free_all(data);
 	return (0);
 }

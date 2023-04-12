@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:03:29 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/04/08 15:55:43 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:22:57 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 int	init_data(t_data *data, int argc, char **argv)
 {
 	data->nb_philos = ft_atoi(argv[1]);
-	data->time_to_die = ft_atoi(argv[2]) + 10;
+	data->time_to_die = ft_atoi(argv[2]) + 5;
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		data->nb_must = ft_atoi(argv[5]);
 	else
 		data->nb_must = -1;
-	if (data->nb_philos < 0 || data->time_to_die < 0
-		|| data->time_to_eat < 0 || data->time_to_sleep < 0 || (argc == 6
-			&& data->nb_must < 0))
+	if (data->nb_philos <= 0 || data->time_to_die <= 0
+		|| data->time_to_eat <= 0 || data->time_to_sleep <= 0 || (argc == 6
+			&& data->nb_must <= 0))
 		return (1);
 	data->start_time = get_time();
 	return (0);
